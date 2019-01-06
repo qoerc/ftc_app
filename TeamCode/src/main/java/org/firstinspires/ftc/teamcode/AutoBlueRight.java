@@ -46,9 +46,7 @@ public class AutoBlueRight extends LinearOpMode {
         colorSensorServo = hardwareMap.servo.get("colorSensorServo");
         colorSensor = hardwareMap.colorSensor.get("colorSensor");
 
-        initVuforia();
-        telemetry.addData("VuMark:\t", vuforiaPosition);
-        telemetry.update();
+
         waitForStart(); //Wait for the user to press the play button
 
         initVuforia();
@@ -64,11 +62,12 @@ public class AutoBlueRight extends LinearOpMode {
         else
             driveForward(.5,13);
         sleep(500);
-        driveForward(-.5,8);
+        if (vuforiaPosition!='r'&&vuforiaPosition!='c')
+            driveForward(-.5,8);
         sleep(500);
         rotateLeft(.5);
         timer.reset();
-        while (timer.seconds()<1){
+        while (opModeIsActive() && timer.seconds()<1){
             leftIntake.setPower(1);
             rightIntake.setPower(-.7);
         }//end while
@@ -219,7 +218,8 @@ public class AutoBlueRight extends LinearOpMode {
 
         relicTrackables.activate();
 
-        while (opModeIsActive()) {
+        timer.reset();
+        while (opModeIsActive() && timer.seconds()<5) {
             RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
             if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
 

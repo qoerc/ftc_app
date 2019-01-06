@@ -59,7 +59,7 @@ public class Team7518Teleop extends LinearOpMode{
 
 
                        //Keep Color Sensor Upright
-                        colorSensorServo.setPosition(.5);
+                        colorSensorServo.setPosition(1);
 
 
                         //Mecanum Drive

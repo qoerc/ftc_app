@@ -13,13 +13,15 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
-@Autonomous(name = "AutoRedRight", group = "7518")
+@Autonomous(name = "AutoRedLeft", group = "7518")
 public class AutoRedRight extends LinearOpMode {
 
     private DcMotor leftFront, rightFront, leftRear, rightRear, rightLift, leftLift, rightIntake, leftIntake;
     private Servo rightFlip, leftFlip, colorSensorServo;
     private ColorSensor colorSensor;
     VuforiaLocalizer vuforia;
+
+    int rColor, bColor;
 
     ElapsedTime timer = new ElapsedTime();
     char vuforiaPosition = ' ';
@@ -46,41 +48,15 @@ public class AutoRedRight extends LinearOpMode {
         colorSensorServo = hardwareMap.servo.get("colorSensorServo");
         colorSensor = hardwareMap.colorSensor.get("colorSensor");
 
-        initVuforia();
-        telemetry.addData("VuMark:\t", vuforiaPosition);
-        telemetry.update();
-        waitForStart(); //Wait for the user to press the play button
 
-        initVuforia();
-        telemetry.addData("VuMark:\t", vuforiaPosition);
-        telemetry.update();
+        waitForStart(); //Wait for the user to press the play button
 
         setFlip(0.6);
         colorSensorInit();
-        if (vuforiaPosition=='r')
-            driveForward(.5,23);
-        else if(vuforiaPosition=='c')
-            driveForward(.5, 17);
-        else
-            driveForward(.5,13);
+        driveForward(-.5,30);
+        if(bColor<rColor)
+            rotateLeft(.5);
         sleep(500);
-        driveForward(-.5,8);
-        sleep(500);
-        rotateRight(.5);
-        timer.reset();
-        while (timer.seconds()<1){
-            leftIntake.setPower(1);
-            rightIntake.setPower(-.7);
-        }//end while
-        leftIntake.setPower(0);
-        rightIntake.setPower(0);
-        sleep(1000);
-        driveForward(-.5,8);
-
-
-
-
-
 
     }//end runOpMode
 
@@ -246,8 +222,8 @@ public class AutoRedRight extends LinearOpMode {
             colorSensorServo.setPosition(.225);
         }//end while
         sleep(250);
-        int rColor = colorSensor.red();
-        int bColor = colorSensor.blue();
+        rColor = colorSensor.red();
+        bColor = colorSensor.blue();
         boolean readColor = false;
 
         if(rColor<bColor){
