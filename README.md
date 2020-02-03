@@ -1,5 +1,8 @@
+## QOERC Legacy Code
+Visit qoengineering.club to learn more about our club.
+
 ## Please note
-This repo is depreceated. Please use qoerc/SkyStone for the 2019-2020 season.
+This repo is depreceated. Please use qoerc/SkyStone for the 2019-2020 season. 
 
 ## Welcome!
 This GitHub repository contains the source code that is used to build an Android app to control a *FIRST* Tech Challenge competition robot.  To use this SDK, download/clone the entire project to your local computer.
