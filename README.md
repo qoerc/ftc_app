@@ -1,5 +1,5 @@
 ## QOERC Legacy Code
-Visit qoengineering.club to learn more about our club.
+Visit qoengineering.club to learn more about our club. Most of the code in this repo is by Ryan Gniadek or Ben Bernstein. Additional contributions by Phil Johnson and Alexander Goslin.
 
 ## Please note
 This repo is depreceated. Please use qoerc/SkyStone for the 2019-2020 season. 
